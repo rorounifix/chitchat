@@ -18,7 +18,7 @@ router.post("/", async  (req, res, next) => {
   }
 
   const data = {
-    name:req.body.name,
+    firstname:req.body.firstname,
     lastname:req.body.lastname,
     email:req.body.email,
     password:hash.encrypt(req.body.password),

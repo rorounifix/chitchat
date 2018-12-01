@@ -14,14 +14,15 @@ router.post("/", async  (req, res, next) => {
     message:null
 
   }
-  
+
   try{
     const user = await users.read({"email":req.body.email})
     if(user.length == 0) throw Error("Invalid Username and Password")
     if(!(hash.decrypt(user[0].password) === req.body.password)) throw Error("Invalid Username and Password")
     const data = {
-      "userid":user._id
+      "data":user[0].id
     }
+    req.headers["Authorization"] = jwt.sign(data, key)
     result['data'] = jwt.sign(data, key)
     result['success'] = true
   }catch(err){
@@ -30,6 +31,7 @@ router.post("/", async  (req, res, next) => {
   }
 
    res.json(result)
+   next()
 
 
 

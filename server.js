@@ -25,14 +25,16 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 //Routers
-const main = require('./routes/main');
+const Dashboard = require('./routes/Dashboard');
 const Register = require('./routes/Register');
-const login = require('./routes/login');
+const Login = require('./routes/Login');
+const Users = require('./routes/Users');
 
 //Routes Setup
-app.use('/', main)
+app.use('/', Dashboard)
 app.use('/register', Register)
-app.use('/login', login)
+app.use('/login', Login)
+app.use('/users', Users);
 
 const port = process.env.PORT || 3000
 
