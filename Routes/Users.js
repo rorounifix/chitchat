@@ -40,9 +40,18 @@ router.put("/",async  (req, res, next) => {
 
   try{
 
-    const updateUser = await users.read({"email":req.body.email}, {"_id":0, password:0, created:0, __v:0})
-    console.log(updateUser)
-    result['data'] = updateUser
+    //check Authorization
+    const auth = req.headers['authorization']
+    const userId = await verifyAuth(auth)
+    if(!userId.success) throw Error(userId.data)
+
+
+
+    const updateUser = await users.read({"_id":userId['data']})
+    updateUser[0].firstname = req.body.firstname
+    updateUser[0].lastname = req.body.lastname
+    console.log(await users.update({"_id":userId['data']}, updateUser[0]))
+    result['data'] = updateUser[0]
     result['success'] = true
   }catch(err){
     console.log(err.message)
