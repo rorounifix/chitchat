@@ -1,10 +1,10 @@
-const User = require('../Schema/users')
+const User = require('../../Schema/users')
 
 
-const createUser = (data) => {
+const create = (data) => {
   return User.create(data)
 
 }
 
 
-module.exports = createUser
+module.exports = create

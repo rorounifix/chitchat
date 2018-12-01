@@ -1,5 +1,11 @@
-const create = require('./create')
+const create = require('./create');
+const read = require('./read');
+const update = require('./update');
+const remove = require('./delete');
 
 module.exports = {
-  create
+  create,
+  read,
+  update,
+  remove
 }
