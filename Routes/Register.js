@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Create = require('../Methods/create')
+const users = require('../Methods/Users')
+const methods = require('../Methods')
 
 
 
-router.post("/", (req, res, next) => {
+router.post("/", async  (req, res, next) => {
 
   const data = {
     name:"admin",
@@ -15,8 +16,9 @@ router.post("/", (req, res, next) => {
     isActive:true
   }
 
-  Create(data)
-  res('true')
+  users.create('test')
+
+  res.json('test')
 
 })
 
